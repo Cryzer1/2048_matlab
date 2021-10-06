@@ -41,8 +41,8 @@ function [grid]=initial(grid)
 end
 
 function [grid]=new(grid)
-    pos=randi(16);
-    while grid(pos)~=0
+    pos=randi(16); % how about pos=randi(15)+1
+    while grid(pos)~=0 % Then you cut this entire part
         pos=randi(16);
     end
         chance=rand();
@@ -80,6 +80,7 @@ function [grid]=add(grid)
     end
 end
 
+% We don't have to make a distinct function for each grid shift. It's enough to call the functions transposed
 function [grid_left]=left(grid)
     grid_left=shift(add(shift(grid)));
     if grid_left~=grid
